@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Vue Js - Gallery photo</title>
+
+    <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+    <!-- Using via Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- https://tailwindcss.com/docs/installation -->
+    <!-- Using Tailwind via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+</head>
+
+<body id="app" class="bg-gray-100">
+
+    <!-- header -->
+    <photo-serarch v-model:searchtext="text" :countlikes="countLike" :search="search" @when-cancel="cancel" @when-search="searching"></photo-serarch>
+
+    <div class="flex justify-center pt-32 text-gray-600 text-xs">
+        <div :class="{'invisible' : !search}">Search Results ({{ countSearch }})</div>
+    </div>
+
+    <!-- show image -->
+    <photo-view :bigimg="viewImg" :propview="hasView" @when-close="close" @when-forward="forward" @when-backward="backward"></photo-view>
+
+    <!-- list task -->
+    <div class="flex flex-wrap justify-center" v-if="searchlist.length !==0 ">
+        <div class="flex p-4 " v-for="task in searchlist" :key="task.no">
+            <photo-item :task="task" @when-like="liked" @when-toggleview="toggleView"></photo-item>
+        </div>
+    </div>
+
+    <!-- button  -->
+    <div v-else class="mt-10 bg-white shadow-lg rounded w-full mx-auto px-auto py-5 flex justify-center ">
+        <h2 class="mb-2 text-2xl font-bold text-gray-800 ">No Photos</h2>
+    </div>
+
+    <a href="https://unsplash.com/ " class="flex justify-center p-4 text-gray-600 text-xs ">photo by Unsplash</a>
+
+    <!-- my main.js -->
+    <script src="main.js"></script>
+    <script src="./components/PhotoItem.js"></script>
+    <script src="./components/PhotoSearch.js"></script>
+    <script src="./components/PhotoView.js"></script>
+
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+
+
+</body>
+
+</html>
