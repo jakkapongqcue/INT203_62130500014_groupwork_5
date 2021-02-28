@@ -111,7 +111,6 @@ const app = Vue.createApp({
         backward() {
             this.bigIMG = this.searchlist;
             for (let i = this.bigIMG.length - 1; i >= 0; i--) {
-                console.log(this.bigIMG[i].img)
                 if (this.viewImg == this.bigIMG[i].img) {
                     if (i == 0) {
                         i = this.bigIMG.length;

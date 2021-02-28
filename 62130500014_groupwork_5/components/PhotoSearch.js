@@ -35,9 +35,5 @@ app.component('photo-serarch', {
         cancel() {
             this.$emit("when-cancel");
         },
-        gg() {
-            console.log(countSearchs)
-        }
-
     },
 })
